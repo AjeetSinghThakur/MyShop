@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyShop.Domain.Models;
 using MyShop.Infrastructure;
+using MyShop.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,9 @@ namespace MyShop.Web
             services.AddControllersWithViews();
             CreateInitialDatabase();
             services.AddTransient<ShoppingContext>();
+            services.AddTransient<IRepository<Order>, OrderRepository>();
+            services.AddTransient<IRepository<Product>, ProductRepository>();
+            services.AddTransient<IRepository<Customer>, CustomerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
